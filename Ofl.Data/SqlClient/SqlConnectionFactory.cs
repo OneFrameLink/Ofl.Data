@@ -3,7 +3,6 @@ using System.Data.SqlClient;
 using System.Threading;
 using System.Threading.Tasks;
 using Ofl.Configuration;
-using Ofl.Data.SqlClient.Contracts;
 
 namespace Ofl.Data.SqlClient
 {
