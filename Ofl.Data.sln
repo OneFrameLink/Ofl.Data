@@ -1,9 +1,10 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ofl.Data", "Ofl.Data\Ofl.Data.csproj", "{13AA1159-D630-48AB-848A-3B8B6B837B03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ofl.Data", "src\Ofl.Data\Ofl.Data.csproj", "{13AA1159-D630-48AB-848A-3B8B6B837B03}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4A43EB59-0539-4FFB-A20D-4762CF2B2D8D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +19,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{13AA1159-D630-48AB-848A-3B8B6B837B03} = {4A43EB59-0539-4FFB-A20D-4762CF2B2D8D}
 	EndGlobalSection
 EndGlobal

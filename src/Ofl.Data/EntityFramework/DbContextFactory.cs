@@ -3,7 +3,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Ofl.Data.EntityFramework.Contracts;
 
 namespace Ofl.Data.EntityFramework
 {
