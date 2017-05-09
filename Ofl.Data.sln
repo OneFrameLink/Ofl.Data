@@ -8,7 +8,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4A43EB59-053
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{A0FECA89-A81D-4515-BA2E-2431537DDF1E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ofl.Data.Tests", "test\Ofl.Data.Tests.csproj", "{B630344B-05F3-4F7A-8B36-FD848451F0C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ofl.Data.Tests", "test\Ofl.Data.Tests\Ofl.Data.Tests.csproj", "{B630344B-05F3-4F7A-8B36-FD848451F0C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
