@@ -1,8 +1,9 @@
-﻿using Ofl.Core.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Ofl.Core.Hashing;
+using Ofl.Hashing;
+using Ofl.Hashing.FowlerNollVo1A;
+using Ofl.Linq;
 
 namespace Ofl.Data.SqlClient
 {
@@ -25,11 +26,15 @@ namespace Ofl.Data.SqlClient
 
         #endregion
 
-        #region Instance, read-only state.
+        #region Read-only state.
 
         public string ConnectionString { get; }
+
         public string Table { get; }
+
         public IReadOnlyCollection<string> Columns { get; }
+
+        private static readonly IHashAlgorithm _hasher = new FowlerNollVo1A32BitHashAlgorithm();
 
         #endregion
 
@@ -92,7 +97,7 @@ namespace Ofl.Data.SqlClient
             hashCodes.AddRange(GetStructuralHashCodes());
 
             // Return the hash code.
-            return hashCodes.Compute32BitFnvCompositeHashCode();
+            return _hasher.GetHashCode(hashCodes);
         }
 
         #endregion

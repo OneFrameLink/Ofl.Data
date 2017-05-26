@@ -13,10 +13,9 @@ namespace Ofl.Data.EntityFramework
         public DbContextFactory(ILoggerFactory loggerFactory)
         {
             // Validate parameters.
-            if (loggerFactory == null) throw new ArgumentNullException(nameof(loggerFactory));
+            _loggerFactory = loggerFactory ?? throw new ArgumentNullException(nameof(loggerFactory));
 
             // Assign values.
-            _loggerFactory = loggerFactory;
             _logger = _loggerFactory.CreateLogger<DbContextFactory>();
         }
 

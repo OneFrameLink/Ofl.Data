@@ -1,4 +1,4 @@
-﻿using Ofl.Core.Linq;
+﻿using Ofl.Linq;
 using System;
 using System.Collections.Generic;
 

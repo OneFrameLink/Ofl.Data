@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Ofl.Linq;
+using System;
 using System.Collections.Generic;
-using Ofl.Core.Linq;
 
 namespace Ofl.Data.SqlClient.Schema
 {

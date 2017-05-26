@@ -5,8 +5,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Ofl.Core.Collections.Generic;
-using Ofl.Core.Linq;
+using Ofl.Collections.Generic;
 
 namespace Ofl.Data.EntityFramework
 {

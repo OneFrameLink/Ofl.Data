@@ -12,9 +12,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Nito.AsyncEx;
-using Ofl.Core;
 using Ofl.Data.SqlClient.Schema;
-using Ofl.Core.Linq;
+using Ofl.Linq;
 
 namespace Ofl.Data.SqlClient
 {
@@ -34,7 +33,7 @@ namespace Ofl.Data.SqlClient
         {
             // Validate parameters.
             if (connection == null) throw new ArgumentNullException(nameof(connection));
-            if (CoreExtensions.IsNull(values)) throw new ArgumentNullException(nameof(values));
+            if (values == null) throw new ArgumentNullException(nameof(values));
 
             // The type of T.
             Type type = typeof(T);
@@ -46,8 +45,8 @@ namespace Ofl.Data.SqlClient
             string table = tableAttribute == null ? type.Name.AsBracketedIdentifier() : tableAttribute.GetSchemaQualifiedName();
 
             // Get properties that don't have not mapped.
-            IReadOnlyCollection<PropertyInfo> properties =
-                Core.Reflection.TypeExtensions.GetPropertiesWithPublicInstanceGetters<T>().
+            IReadOnlyCollection<PropertyInfo> properties = Reflection.TypeExtensions.
+                GetPropertiesWithPublicInstanceGetters<T>().
                 Where(pi => pi.GetCustomAttribute<NotMappedAttribute>() == null).
                 ToReadOnlyCollection();
 
@@ -63,7 +62,7 @@ namespace Ofl.Data.SqlClient
             if (connection == null) throw new ArgumentNullException(nameof(connection));
             if (string.IsNullOrWhiteSpace(table)) throw new ArgumentNullException(nameof(table));
             if (properties == null) throw new ArgumentNullException(nameof(properties));
-            if (CoreExtensions.IsNull(values)) throw new ArgumentNullException(nameof(values));
+            if (values == null) throw new ArgumentNullException(nameof(values));
 
             // Create the factory.
             Action<object, IDictionary<string, object>> populator = ValueFactories.GetOrAdd(typeof(T),
@@ -83,7 +82,7 @@ namespace Ofl.Data.SqlClient
         private static Action<object, IDictionary<string, object>> CreateValueFactoryAction<T>(T values, IReadOnlyCollection<PropertyInfo> properties)
         {
             // Validate parameters.
-            Debug.Assert(!CoreExtensions.IsNull(values));
+            Debug.Assert(values != null);
             Debug.Assert(properties != null);
 
             // The type of T.
@@ -151,11 +150,8 @@ namespace Ofl.Data.SqlClient
             // Cycle through the parameters, add.
             foreach (var pair in mergeComponents.ParameterMap)
             {
-                // Look up the value, add.
-                object value;
-
                 // Do the lookup.
-                values.TryGetValue(pair.Key, out value);
+                values.TryGetValue(pair.Key, out object value);
 
                 // Add the value.
                 command.Parameters.AddWithValue(pair.Value, value ?? DBNull.Value);
@@ -179,11 +175,8 @@ namespace Ofl.Data.SqlClient
             // Lock on the components lock.
             using (await MergeComponentsLock.LockAsync(cancellationToken).ConfigureAwait(false))
             {
-                // The merge components.
-                MergeComponents mergeComponents;
-
                 // If caching and we can get the value from the cache, then return it.
-                if (cache && MergeComponents.TryGetValue(key, out mergeComponents)) return mergeComponents;
+                if (cache && MergeComponents.TryGetValue(key, out MergeComponents mergeComponents)) return mergeComponents;
 
                 // Create the merge components.
                 mergeComponents = await connection.CreateMergeComponentsAsync(transaction,

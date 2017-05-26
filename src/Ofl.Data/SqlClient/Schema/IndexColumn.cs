@@ -9,10 +9,9 @@ namespace Ofl.Data.SqlClient.Schema
         public IndexColumn(Column column, int ordinal, bool descending, bool included)
         {
             // Validate parameters.
-            if (column == null) throw new ArgumentNullException(nameof(column));
+            Column = column ?? throw new ArgumentNullException(nameof(column));
 
             // Assign values.
-            Column = column;
             Ordinal = ordinal;
             Descending = descending;
             Included = included;

@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Ofl.Configuration;
+using System;
 using System.Data.SqlClient;
 using System.Threading;
 using System.Threading.Tasks;
-using Ofl.Configuration;
 
 namespace Ofl.Data.SqlClient
 {
@@ -20,10 +20,7 @@ namespace Ofl.Data.SqlClient
         public SqlConnectionFactory(IConnectionStringManager connectionStringManager)
         {
             // Validate parameters.
-            if (connectionStringManager == null) throw new ArgumentNullException(nameof(connectionStringManager));
-
-            // Assign values.
-            _connectionStringManager = connectionStringManager;
+            _connectionStringManager = connectionStringManager ?? throw new ArgumentNullException(nameof(connectionStringManager));
         }
 
         #endregion

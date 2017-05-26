@@ -8,9 +8,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Dapper;
 using Nito.AsyncEx;
-using Ofl.Core.Collections.Generic;
-using Ofl.Core.Linq;
 using Ofl.Data.SqlClient.Schema.DataTransferObjects;
+using Ofl.Linq;
 
 namespace Ofl.Data.SqlClient.Schema
 {
@@ -62,10 +61,19 @@ namespace Ofl.Data.SqlClient.Schema
             // Lock, get or add.
             using (await TablesLock.LockAsync(cancellationToken).ConfigureAwait(false))
             {
-                // Get or add.
-                return await Tables.GetOrAddAsync(key,
-                    async k => await connection.GetTableSchemaAsync(transaction, key, cancellationToken).
-                        ConfigureAwait(false)).ConfigureAwait(false);
+                // The table.
+                if (!Tables.TryGetValue(key, out Table value))
+                {
+                    // Set value.
+                    value = await connection.GetTableSchemaAsync(transaction, key, cancellationToken).
+                        ConfigureAwait(false);
+
+                    // Add.
+                    Tables.Add(key, value);
+                }
+
+                // Return the value.
+                return value;
             }
         }
 

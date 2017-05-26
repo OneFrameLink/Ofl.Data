@@ -7,15 +7,22 @@
     <PackageId>Ofl.Data</PackageId>
     <PackageProjectUrl>https://github.com/OneFrameLink/Ofl.Data</PackageProjectUrl>
     <RepositoryUrl>https://github.com/OneFrameLink/Ofl.Data.git</RepositoryUrl>
-    <PackageTags>ado.net EF entity-framework entity-framework-core entityframework</PackageTags>
-    <Version>1.1.0</Version>
+    <PackageTags>adonet entity-framework entity-framework-core</PackageTags>
+    <Version>2.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Dapper" Version="1.50.2" />
-    <PackageReference Include="Ofl.Configuration.Contracts" Version="1.0.5" />
-    <PackageReference Include="Ofl.Core" Version="1.3.1" />
-    <PackageReference Include="Ofl.Data.Contracts" Version="1.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="1.1.2" />
+    <PackageReference Include="Nito.AsyncEx.Coordination" Version="1.0.2" />
+    <PackageReference Include="Ofl.Collections" Version="1.0.3" />
+    <PackageReference Include="Ofl.Configuration.Abstractions" Version="1.0.3" />
+    <PackageReference Include="Ofl.Data.Abstractions" Version="1.0.3" />
+    <PackageReference Include="Ofl.Hashing" Version="1.0.3" />
+    <PackageReference Include="Ofl.Interactive.Async" Version="1.0.3" />
+    <PackageReference Include="Ofl.Linq" Version="1.0.2" />
+    <PackageReference Include="Ofl.Reflection" Version="1.2.5" />
+    <PackageReference Include="System.Interactive.Async" Version="3.1.1" />
   </ItemGroup>
 
   <ItemGroup>
